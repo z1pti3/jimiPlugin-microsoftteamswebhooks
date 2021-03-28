@@ -1,0 +1,80 @@
+{
+    "name" : "microsoftteamswebhooks",
+    "author" : "z1p",
+    "version" : 0.1,
+    "categories" : ["collaboration"],
+    "description" : "Provides interaction and integration withMicrosoft Teams",
+    "icon" : null,
+    "requirements" : {
+        "jimi_min_version" : null,
+        "jimi_max_version" : null,
+        "plugins" : []
+    },
+    "collections" : {
+
+    },
+    "triggers" : {
+        "microsoftteamswebhooksResponse" : {
+            "display_name" : "microsoftteamswebhooksResponse",
+            "className" : "_microsoftteamswebhooksResponse",
+            "class_location" : "models.trigger",
+            "description" : "Trigger called when an outbound webhook is called from a teams channel matching the token configured within this trigger.",
+            "fields" : [
+                { "schema_item" : "token", "schema_value" : "token", "type" : "input", "label" : "token", "description" : "jimi secure token.", "required" : true, "jimi_syntax" : false },
+                { "schema_item" : "securityToken", "schema_value" : "securityToken", "type" : "input", "label" : "securityToken", "description" : "Outbound webhook secure token", "required" : true, "jimi_syntax" : false }
+            ],
+            "data_out" : {
+                "message" : { 
+                    "description" : "Teams message",
+                    "type" : "json",
+                    "always_present" : true,
+                    "values" : {
+                    }
+                }
+            }
+        }
+    },
+    "actions" : {
+        "microsoftteamswebhooksPostMessage" : {
+            "display_name" : "microsoftteamswebhooksPostMessage",
+            "className" : "_microsoftteamswebhooksPostMessage",
+            "class_location" : "models.action",
+            "description" : "Posts a message to a configured inbound webhook within a team channel.",
+            "fields" : [
+                { "schema_item" : "url", "schema_value" : "url", "type" : "input", "label" : "url", "description" : "URL for the configured inbound webhook. https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook", "required" : true, "jimi_syntax" : false },
+                { "schema_item" : "message", "schema_value" : "message", "type" : "input", "label" : "message", "description" : "Message to post to the teams channel", "required" : true, "jimi_syntax" : true }
+            ],
+            "data_out" : {
+                "result" : { 
+                    "description" : "Returns True/False for success or failure.",
+                    "type" : "boolean",
+                    "always_present" : true,
+                    "values" : {
+                        "True" : { "description" : "Successfully posted the message." },
+                        "False" : { "description" : "Failed to posted the message." }
+                    }
+                },
+                "rc" : {
+                    "description" : "Returns the exit code.",
+                    "type" : "number",
+                    "always_present" : true,
+                    "values" : {
+                        "0" : { "description" : "Successfully posted the message." },
+                        "400" : { "description" : "Failed to posted the message." }
+                    }
+                },
+                "msg" : {
+                    "description" : "A message that outlines additional information about the result.",
+                    "type" : "text",
+                    "always_present" : false,
+                    "values" : {
+                        "(string)" : { "description" : "A message that outlines additional information about the result." }
+                    }
+                }
+            }
+        }
+    },
+    "settings" : {
+
+    }
+}
