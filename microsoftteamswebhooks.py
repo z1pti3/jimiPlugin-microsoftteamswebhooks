@@ -12,7 +12,7 @@ class _microsoftteamswebhooks(plugin._plugin):
     def uninstall(self):
         # deregister models
         model.deregisterModel("microsoftteamswebhooksPostMessage","_microsoftteamswebhooksPostMessage","_action","plugins.microsoftteamswebhooks.models.action")
-        model.deregisterModel("microsoftteamswebhooksResponse","_microsoftteamswebhooksResponse","_action","plugins.microsoftteamswebhooks.models.trigger")
+        model.deregisterModel("microsoftteamswebhooksResponse","_microsoftteamswebhooksResponse","_trigger","plugins.microsoftteamswebhooks.models.trigger")
         return True
 
     def upgrade(self,LatestPluginVersion):
