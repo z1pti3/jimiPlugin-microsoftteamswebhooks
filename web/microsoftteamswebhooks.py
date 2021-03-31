@@ -9,7 +9,7 @@ import jimi
 
 pluginPages = Blueprint('microsoftteamswebhooksPages', __name__)
 
-@pluginPages.route("/microsoftteamswebhooks/<token>/",methods=["POST"])
+@pluginPages.route("/<token>/",methods=["POST"])
 def __PUBLIC__outboundWebHook(token):
     webhook = trigger._microsoftteamswebhooksResponse().getAsClass(query={ "token" : token })[0]
     if webhook.enabled:
